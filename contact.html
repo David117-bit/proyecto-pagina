@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Portafolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav-dark">
+  <div class="logo">👨‍💻David Rodelo Cogollo👨‍💻</div>
+  <nav class="desktop-nav">
+    <a href="index.html">Inicio</a>
+    <a href="projects.html">Proyectos</a>
+    <a href="articles.html">Artículos</a>
+    <a href="contact.html">Contacto</a>
+  </nav>
+  <div class="menu-toggle" id="mobile-menu">☰</div>
+</header>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Inicio</a>
+  <a href="projects.html">Proyectos</a>
+  <a href="articles.html">Artículos</a>
+  <a href="contact.html">Contacto</a>
+</nav>
+
+<main>
+  <section class="section-center">
+    <h2 style="text-align: left;">Formulario de Contacto</h2>
+    <div class="form-card">
+      <form id="contact-form">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="title">Asunto:</label>
+        <input type="text" id="title" name="title">
+
+        <label for="message">Mensaje:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn-hero">Enviar</button>
+        <p id="form-message" style="margin-top:1rem;"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<section class="section-center change-color">
+  <span class="color"></span>
+  <button class="btn-hero" id="btn">Click Aqui</button>
+</section>
+
+
+<footer>
+  <p>© Todos los derechos reservados 2025</p>
+</footer>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init("1AQu5Rj1wibhn3LWZ"); // Public Key corregida
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm("service_lioz31p", "template_1vvc9jk", this)
+    .then(function() {
+      document.getElementById("form-message").textContent = "✅ Mensaje enviado correctamente.";
+    }, function(error) {
+      document.getElementById("form-message").textContent = "❌ Error al enviar el mensaje. Intenta nuevamente.";
+      console.error("EmailJS error:", error);
+    });
+
+  this.reset();
+});
+</script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
